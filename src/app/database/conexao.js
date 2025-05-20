@@ -4,12 +4,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const conexao = mysql.createConnection({
-  host: process.env.HOST_DB,
-  port: process.env.PORT_DB,
-  user: process.env.USER_DB,
-  password: process.env.SENHA_DB,
-  database: process.env.DB,
+  
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
+
+
 
 //fazer a conexão com o banco de dados
 conexao.connect((erro) => {
