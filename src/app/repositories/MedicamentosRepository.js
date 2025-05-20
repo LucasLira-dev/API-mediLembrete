@@ -1,0 +1,29 @@
+import { consulta } from "./../database/conexao.js";
+
+class medicamentosRepository {
+  create(nome, dosagem, horario) {
+    const sql = `INSERT INTO dados_medicamento (nome_medicamento, dosagem_medicamento, horarios_medicamento) VALUES (?, ?, ?)`;
+    return consulta(sql, [nome, dosagem, horario], 'Não foi possivel cadastrar o medicamento!')
+  }
+
+  findAll() {
+    const sql = "SELECT * FROM dados_medicamento";
+    return consulta(sql, '', 'Não foi possivel localizar os medicamentos!')
+  }
+
+  findById(id) {
+    const sql = `SELECT * FROM dados_medicamento WHERE id = ?`;
+    return consulta(sql, [id], 'Não foi possivel localizar o medicamento pelo ID!')
+  }
+
+  update(id, nome, dosagem, horario) {
+    const sql = `UPDATE dados_medicamento SET nome_medicamento = ?, dosagem_medicamento = ?, horarios_medicamento = ? WHERE id = ?`;     
+    return consulta(sql, [nome, dosagem, horario, id], 'Não foi possivel atualizar o medicamento!')
+  }
+  
+  delete(id) {
+    return consulta(`DELETE FROM dados_medicamento WHERE id = ?`, [id], 'Não foi possivel deletar o medicamento!')
+  }
+}
+
+export default new medicamentosRepository();
