@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const conexao = mysql.createConnection({
-  host: "localhost",
+  host: process.env.HOST_DB,
   port: process.env.PORT_DB,
-  user: "root",
+  user: process.env.USER_DB,
   password: process.env.SENHA_DB,
   database: process.env.DB,
 });
