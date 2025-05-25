@@ -11,3 +11,5 @@ class UsuariosController {
         }
     }
 }
+
+export default new UsuariosController();

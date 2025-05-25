@@ -1,8 +1,10 @@
-import { consulta } from "../database/conexao";
+import { consulta } from "./../database/conexao.js";
 
-class usuariosRepository {
+class UsuariosRepository {
     create(email, senha) {
         const sql = `INSERT INTO usuarios (email, senha) VALUES (?, ?)`;
         return consulta(sql, [email, senha], 'Não foi possivel cadastrar o usuário!')
     }
 }
+
+export default new UsuariosRepository();
