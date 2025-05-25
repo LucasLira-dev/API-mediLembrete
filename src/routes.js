@@ -7,6 +7,8 @@ const router = Router();
 
 //adicionar usuario
 router.post('/usuario', UsuariosController.store)
+//retorna medicamentos de um usuario
+router.get('/medicamento/:userId', MedicamentosController.getByUser)
 //retornar todos os medicamentos
 router.get('/medicamento', MedicamentosController.index)
 //retornar um medicamento pelo id
