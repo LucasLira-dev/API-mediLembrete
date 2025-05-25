@@ -7,6 +7,16 @@ class MedicamentosController{
 
     }
 
+    async getByUser(req, res) {
+        const { userId } = req.params;
+        try {
+            const rows = await MedicamentosRepository.findByUserId(userId);
+            res.json(rows);
+        } catch (erro) {
+            res.status(500).json({ erro });
+        }
+    }
+
     async show(req, res){
         const id = req.params.id;
         const row = await MedicamentosRepository.findById(id)
@@ -16,8 +26,8 @@ class MedicamentosController{
 
     async store(req, res){
         try {
-            const { nome, dosagem, horario } = req.body;
-            const row = await MedicamentosRepository.create(nome, dosagem, horario);
+            const { nome, dosagem, horario, userId } = req.body;
+            const row = await MedicamentosRepository.create(nome, dosagem, horario, userId);
             res.json(row);
         } catch (error) {
             res.status(500).json({ error: error.message || 'Erro ao cadastrar medicamento' });

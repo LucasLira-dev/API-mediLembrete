@@ -4,6 +4,8 @@ import MedicamentosController from './app/controllers/MedicamentosController.js'
 
 const router = Router();
 
+//adicionar usuario
+router.post('/usuario', UsuariosController.store)
 //retornar todos os medicamentos
 router.get('/medicamento', MedicamentosController.index)
 //retornar um medicamento pelo id
