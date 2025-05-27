@@ -28,7 +28,11 @@ class UsuariosController {
             if (!senhaValida) {
                 return res.status(401).json({ error: 'Senha inválida' });
             }
-            res.status(200).json({ userId: usuario.userId});
+            res.status(200).json({
+                 userId: usuario.userId, 
+                 email: usuario.email, 
+                 senha: usuario.senha
+                });
         } catch (error) {
             res.status(500).json({ error: error.message || 'Erro ao fazer login' });
         }
