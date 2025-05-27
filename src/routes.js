@@ -8,7 +8,7 @@ const router = Router();
 //adicionar usuario
 router.post('/usuario', UsuariosController.store)
 //verifica o login
-router.post('/usuario/login', UsuariosController)
+router.post('/usuario/login', UsuariosController.login)
 //retorna medicamentos de um usuario
 router.get('/medicamento/:userId', MedicamentosController.getByUser)
 //retornar todos os medicamentos
