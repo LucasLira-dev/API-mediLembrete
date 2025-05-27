@@ -17,6 +17,22 @@ class UsuariosController {
             res.status(500).json({ error: error.message || 'Erro ao cadastrar usuário' });
         }
     }
+    async login(req, res) {
+        const { email, senha } = req.body;
+        try {
+            const usuario = await UsuariosRepository.findByEmail(email);
+            if (!usuario) {
+                return res.status(404).json({ error: 'Usuário não encontrado' });
+            }
+            const senhaValida = await bcrypt.compare(senha, usuario.senha);
+            if (!senhaValida) {
+                return res.status(401).json({ error: 'Senha inválida' });
+            }
+            res.status(200).json({ userId: usuario.userId});
+        } catch (error) {
+            res.status(500).json({ error: error.message || 'Erro ao fazer login' });
+        }
+    }
 }
 
 export default new UsuariosController();
