@@ -30,8 +30,7 @@ class UsuariosController {
             }
             res.status(200).json({
                  userId: usuario.userId, 
-                 email: usuario.email, 
-                 senha: usuario.senha
+                 email: usuario.email
                 });
         } catch (error) {
             res.status(500).json({ error: error.message || 'Erro ao fazer login' });
