@@ -24,6 +24,10 @@ app.use(routes)
 
 const PORT = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+    res.send('API MediLembrete está rodando!');
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
