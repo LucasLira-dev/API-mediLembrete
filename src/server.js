@@ -9,6 +9,8 @@ import 'dotenv/config';
 const app = express();
 
 
+console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
+
 app.use(cors({
     origin: process.env.FRONTEND_URL ,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
