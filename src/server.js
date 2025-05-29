@@ -12,10 +12,16 @@ const app = express();
 console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
 
 app.use(cors({
-    origin: process.env.FRONTEND_URL ,
+    origin: function (origin, callback) {
+        if (!origin || origin === process.env.FRONTEND_URL) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
-}))
+}));
 
 app.use(express.json());
 
@@ -24,9 +30,6 @@ app.use(routes)
 
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.send('API MediLembrete está rodando!');
-});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
