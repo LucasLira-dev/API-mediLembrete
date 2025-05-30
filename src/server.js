@@ -14,23 +14,27 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // permite requisições sem origem (ex: Postman)
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
+
+    // NÃO lança erro — apenas nega sem crashar
+    return callback(null, false);
   },
   credentials: true
 }));
 
+
 app.use(express.json());
 
 
-app.get("/", (req, res) => {
-  res.send("API está online");
+app.use((req, res, next) => {
+  console.log('Request from origin:', req.headers.origin);
+  next();
 });
-
 
 // usando o Router
 app.use(routes)
