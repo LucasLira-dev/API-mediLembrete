@@ -9,14 +9,11 @@ import 'dotenv/config';
 const app = express();
 
 
-console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
-
-
 app.use(cors({
     origin: 'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app'
     , 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
+    credentials: true,
 }));
 
 app.use(express.json());
