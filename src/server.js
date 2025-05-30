@@ -19,13 +19,12 @@ app.use(cors({
             callback(new Error('Not allowed by CORS'));
         }
     }, 
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
 
 app.use(express.json());
 
-app.options('*', cors());
 
 app.get("/", (req, res) => {
   res.send("API está online");
