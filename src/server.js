@@ -14,15 +14,12 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // permite requisições sem origem (ex: Postman)
-
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, false); // Não lança erro
     }
-
-    // NÃO lança erro — apenas nega sem crashar
-    return callback(null, false);
   },
   credentials: true
 }));
