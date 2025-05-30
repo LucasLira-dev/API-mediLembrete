@@ -12,7 +12,7 @@ const app = express();
 console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
 
 app.use(cors({
-    origin: 'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app', // Permite o acesso do frontend
+    origin: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
