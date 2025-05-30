@@ -12,13 +12,7 @@ const app = express();
 console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || origin === process.env.FRONTEND_URL) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: 'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app', // Permite todas as origens
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
