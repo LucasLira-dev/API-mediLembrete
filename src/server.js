@@ -12,11 +12,10 @@ const app = express();
 app.use(cors({
     origin: 'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app'
     , 
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
 
-app.options('*', cors());
 
 app.use(express.json());
 
