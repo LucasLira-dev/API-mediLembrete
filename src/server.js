@@ -11,14 +11,19 @@ const app = express();
 
 console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
 
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app'
+];
+
 app.use(cors({
     origin: function (origin, callback) {
-        if (!origin || origin === process.env.FRONTEND_URL) {
+        if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
         }
-    }, 
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
