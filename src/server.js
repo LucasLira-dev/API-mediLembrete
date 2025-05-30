@@ -19,15 +19,15 @@ app.use(cors({
 
 app.use(express.json());
 
-// usando o Router
-app.use(routes)
-
-const PORT = process.env.PORT || 3000;
-
 app.get("/", (req, res) => {
   res.send("API está online");
 });
 
+
+// usando o Router
+app.use(routes)
+
+const PORT = process.env.PORT || 3000;
 
 
 app.listen(PORT, () => {
