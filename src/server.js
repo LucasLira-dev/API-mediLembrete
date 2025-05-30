@@ -6,16 +6,23 @@ import cors from 'cors'
 
 import 'dotenv/config';
 
-const app = express();
+const app = express()
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app'
+];
 
 app.use(cors({
-    origin: 'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app'
-    , 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
-
 
 app.use(express.json());
 
