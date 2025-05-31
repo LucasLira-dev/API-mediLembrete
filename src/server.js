@@ -1,23 +1,23 @@
 import express from 'express';
-
 import routes from './routes.js';
-
-import cors from 'cors'
-
+import cors from 'cors';
 import 'dotenv/config';
 
-const app = express()
-
+const app = express();
 
 app.use(cors({
   origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
 
+app.options('*', cors());
+
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('API está online');
+});
 
 app.use((req, res, next) => {
   console.log('Request from origin:', req.headers.origin);
@@ -25,19 +25,10 @@ app.use((req, res, next) => {
 });
 
 // usando o Router
-app.use(routes)
+app.use(routes);
 
 const PORT = process.env.PORT || 3000;
 
-
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-})
-
-process.on('uncaughtException', (err) => {
-  console.error('Unhandled Exception:', err);
-});
-
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('Unhandled Rejection:', reason);
+  console.log(`Server is running on port ${PORT}`);
 });
