@@ -8,7 +8,7 @@ const app = express();
 app.use(cors({
   origin: function(origin, callback) {
     const allowedOrigins = [
-      'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app',
+      'https://medi-lembrete.vercel.app',
       'http://localhost:3000'
     ];
     if (!origin || allowedOrigins.includes(origin)) {
