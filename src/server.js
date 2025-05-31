@@ -8,13 +8,11 @@ import 'dotenv/config';
 
 const app = express()
 
-// const allowedOrigins = [
-//   'http://localhost:3000',
-//   'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app'
-// ];
 
 app.use(cors({
-  origin: 'https://medi-lembrete-zkcv-6t768zv2p-lucaslira-devs-projects.vercel.app',
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
@@ -36,3 +34,10 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
 
+process.on('uncaughtException', (err) => {
+  console.error('Unhandled Exception:', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection:', reason);
+});
