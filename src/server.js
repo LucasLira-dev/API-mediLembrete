@@ -18,12 +18,15 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(null, false); // Não lança erro
+      callback(new Error('Not allowed by CORS'));
     }
   },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
 
+// Esta linha é ESSENCIAL para o preflight funcionar!
+app.options('*', cors());
 
 app.use(express.json());
 
