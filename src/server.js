@@ -6,12 +6,10 @@ import 'dotenv/config';
 const app = express();
 
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-
-app.options('*', cors());
 
 app.use(express.json());
 
